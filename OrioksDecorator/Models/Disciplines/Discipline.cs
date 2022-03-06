@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OrioksDecorator.Models.Student
+namespace OrioksDecorator.Models.Disciplines
 {
     public class Discipline
     {

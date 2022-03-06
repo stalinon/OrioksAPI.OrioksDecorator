@@ -1,34 +1,83 @@
-﻿using AngleSharp.Html.Parser;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using OrioksDecorator.Categories.Interfaces;
+using OrioksDecorator.Models.Disciplines;
 using OrioksDecorator.Models.Student;
+using RestSharp;
 
 namespace OrioksDecorator.Categories.Impl
 {
     public class StudentCategory : IStudentCategory
     {
-        private HttpClient _client;
+        private readonly RestClient _client;
 
-        public StudentCategory(HttpClient client)
+        public StudentCategory(RestClient client)
         {
             _client = client;
         }
 
-        public async Task<Disciplines> GetDisciplineInfos()
+        public async Task<IEnumerable<AcademicDebts>> GetAcademicDebts()
         {
-            var baseUrl = "https://orioks.miet.ru/";
-            var response = await _client.GetAsync(baseUrl+"student/student/");
+            var request = new RestRequest
+            {
+                Resource = $"/api/v1/student/academic-debts",
+                Method = Method.Get
+            };
 
-            var html = await response.Content.ReadAsStringAsync();
+            var response = await _client.GetAsync(request);
 
-            var parser = new HtmlParser();
-            var document = parser.ParseDocument(html);
+            return JsonConvert.DeserializeObject<IEnumerable<AcademicDebts>>(response.Content);
+        }
 
-            var discJson = document.All.Where(m => m.LocalName == "div" && m.Id == "forang").First().TextContent;
+        public async Task<IEnumerable<Discipline>> GetDisciplines()
+        {
+            var request = new RestRequest
+            {
+                Resource = $"/api/v1/student/disciplines",
+                Method = Method.Get
+            };
 
-            var discipline = JsonConvert.DeserializeObject<Disciplines>(discJson);
+            var response = await _client.GetAsync(request);
 
-            return discipline;
+            return JsonConvert.DeserializeObject<IEnumerable<Discipline>>(response.Content);
+        }
+
+        public async Task<IEnumerable<Event>> GetEventsByDisciplineId(int disciplineId)
+        {
+            var request = new RestRequest
+            {
+                Resource = $"/api/v1/student/disciplines/{disciplineId}/events",
+                Method = Method.Get
+            };
+
+            var response = await _client.GetAsync(request);
+
+            return JsonConvert.DeserializeObject<IEnumerable<Event>>(response.Content);
+        }
+
+        public async Task<IEnumerable<Resit>> GetResitsByDebtId(int debtId)
+        {
+            var request = new RestRequest
+            {
+                Resource = $"/api/v1/student/academic-debts/{debtId}/resits",
+                Method = Method.Get
+            };
+
+            var response = await _client.GetAsync(request);
+
+            return JsonConvert.DeserializeObject<IEnumerable<Resit>>(response.Content);
+        }
+
+        public async Task<Student> GetStudentInfo()
+        {
+            var request = new RestRequest
+            {
+                Resource = $"/api/v1/student",
+                Method = Method.Get
+            };
+
+            var response = await _client.GetAsync(request);
+
+            return JsonConvert.DeserializeObject<Student>(response.Content);
         }
     }
 }

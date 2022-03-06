@@ -1,14 +1,13 @@
 ﻿using Newtonsoft.Json;
 
-namespace OrioksDecorator.Models.Student
+namespace OrioksDecorator.Models.Schedule
 {
-    public class TypeEvent
+    public class Group
     {
         [JsonProperty("id")]
+
         public int Id { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
-        [JsonProperty("important")]
-        public int IsImportant { get; set; }
     }
 }

@@ -1,10 +1,10 @@
 ﻿namespace OrioksAPI.ConsoleTest.Examples
 {
-    internal static class Student
+    internal static class Disciplines
     {
         internal static async Task DisciplinesAsync(OrioksDecorator.OrioksDecorator client)
         {
-            var discipline = await client.Student.GetDisciplineInfos();
+            var discipline = await client.Disciplines.GetDisciplineInfos();
             var list = discipline.Items;
 
             foreach (var item in list)

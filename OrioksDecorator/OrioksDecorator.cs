@@ -1,5 +1,7 @@
 ﻿using OrioksDecorator.Categories.Impl;
 using OrioksDecorator.Categories.Interfaces;
+using RestSharp;
+using RestSharp.Authenticators;
 using System.Net;
 
 namespace OrioksDecorator
@@ -7,6 +9,7 @@ namespace OrioksDecorator
     public class OrioksDecorator
     {
         private static HttpClient _client;
+        private static RestClient _clientRest;
 
         public static async Task<OrioksDecorator> Instance(OrioksAccount account)
         {
@@ -14,8 +17,19 @@ namespace OrioksDecorator
             await instance.Auth(account);
 
             instance.News = new NewsCategory(_client);
-            instance.Student = new StudentCategory(_client);
-            
+            instance.Disciplines = new DisciplinesCategory(_client);
+
+            _clientRest = new RestClient("https://orioks.miet.ru/")
+            {
+                Authenticator = new JwtAuthenticator(account.Token),
+            };
+
+            _clientRest.AddDefaultHeader("Accept", "application/json");
+            _clientRest.AddDefaultHeader("User-Agent", "PostmanRuntime/7.28.4 Windows 10");
+
+            instance.Schedule = new ScheduleCategory(_clientRest);
+            instance.Student = new StudentCategory(_clientRest);
+
             return instance;
         }
 
@@ -53,6 +67,8 @@ namespace OrioksDecorator
         }
 
         public INewsCategory News { get; private set; }
+        public IDisciplinesCategory Disciplines { get; private set; }
+        public IScheduleCategory Schedule { get; private set; }
         public IStudentCategory Student { get; private set; }
 
     }

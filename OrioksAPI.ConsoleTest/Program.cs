@@ -9,5 +9,6 @@ var account = new OrioksAccount
 
 var client = await OrioksDecorator.OrioksDecorator.Instance(account);
 
+//await Resourses.GetResourseFromFirstOfCurrDisciplinesAsync(client);
 //await News.NewsAsync(client);
 //await Disciplines.DisciplinesAsync(client);

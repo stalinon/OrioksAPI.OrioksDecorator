@@ -4,7 +4,7 @@
     {
         internal static async Task DisciplinesAsync(OrioksDecorator.OrioksDecorator client)
         {
-            var discipline = await client.Disciplines.GetDisciplineInfos();
+            var discipline = await client.Disciplines.GetCurrentDisciplineInfos();
             var list = discipline.Items;
 
             foreach (var item in list)

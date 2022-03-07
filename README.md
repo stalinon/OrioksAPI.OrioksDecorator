@@ -4,7 +4,7 @@
 ## Пример использования
 
 ```c#
-using OrioksAPI;
+using OrioksDecorator;
 
 var account = new OrioksAccount
 {

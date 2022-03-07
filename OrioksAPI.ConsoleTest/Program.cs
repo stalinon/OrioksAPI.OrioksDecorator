@@ -7,7 +7,7 @@ var account = new OrioksAccount
     Token = ""
 };
 
-var client = await OrioksDecorator.OrioksDecorator.Instance(account);
+var client = await OrioksClient.Instance(account);
 
 //await Resourses.GetResourseFromFirstOfCurrDisciplinesAsync(client);
 //await News.NewsAsync(client);

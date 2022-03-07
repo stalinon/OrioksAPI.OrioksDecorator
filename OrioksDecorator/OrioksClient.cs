@@ -6,14 +6,14 @@ using System.Net;
 
 namespace OrioksDecorator
 {
-    public class OrioksDecorator
+    public class OrioksClient
     {
         private static HttpClient _client;
         private static RestClient _clientRest;
 
-        public static async Task<OrioksDecorator> Instance(OrioksAccount account)
+        public static async Task<OrioksClient> Instance(OrioksAccount account)
         {
-            var instance = new OrioksDecorator(account);
+            var instance = new OrioksClient(account);
             await instance.Auth(account);
 
             instance.News = new NewsCategory(_client);
@@ -37,7 +37,7 @@ namespace OrioksDecorator
             return instance;
         }
 
-        private OrioksDecorator(OrioksAccount account)
+        private OrioksClient(OrioksAccount account)
         {
             var cookies = new CookieContainer();
             var handler = new HttpClientHandler();
@@ -72,8 +72,8 @@ namespace OrioksDecorator
 
         public INewsCategory News { get; private set; }
         public IDisciplinesCategory Disciplines { get; private set; }
-        public IScheduleCategory Schedule { get; private set; }
         public IStudentCategory Student { get; private set; }
+        public IScheduleCategory Schedule { get; private set; }
 
     }
 }

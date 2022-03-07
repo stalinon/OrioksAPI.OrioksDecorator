@@ -1,8 +1,10 @@
-﻿namespace OrioksAPI.ConsoleTest.Examples
+﻿using OrioksDecorator;
+
+namespace OrioksAPI.ConsoleTest.Examples
 {
     internal static class News
     {
-        internal static async Task NewsAsync(OrioksDecorator.OrioksDecorator client)
+        internal static async Task NewsAsync(OrioksClient client)
         {
             var list = await client.News.GetNews(false);
 

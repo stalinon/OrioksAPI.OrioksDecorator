@@ -28,6 +28,10 @@ namespace OrioksDecorator.Models.Disciplines
         public FormControl FormControl { get; set; }
         [JsonProperty("preps")]
         public IEnumerable<Teacher> Teachers { get; set; }
+
+        [JsonProperty("balls")]
+        public Balls Balls { get; set; }
+
         [JsonProperty("grade_full")]
         public Grade Grade { get; set; }
         [JsonProperty("date_exam")]

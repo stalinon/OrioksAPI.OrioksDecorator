@@ -1,8 +1,10 @@
-﻿namespace OrioksAPI.ConsoleTest.Examples
+﻿using OrioksDecorator;
+
+namespace OrioksAPI.ConsoleTest.Examples
 {
     public static class Resourses
     {
-        public static async Task GetResourseFromFirstOfCurrDisciplinesAsync(OrioksDecorator.OrioksDecorator client)
+        public static async Task GetResourseFromFirstOfCurrDisciplinesAsync(OrioksClient client)
         {
             var disciplines = await client.Disciplines.GetCurrentDisciplineInfos();
             var discipline = disciplines.Items.First();

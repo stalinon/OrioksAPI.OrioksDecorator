@@ -7,7 +7,7 @@ using OrioksDecorator.Models.Disciplines;
 
 namespace OrioksDecorator.Categories.Impl
 {
-    public class DisciplinesCategory : IDisciplinesCategory, IResoursesCategory
+    public class DisciplinesCategory : IDisciplinesCategory
     {
         private HttpClient _client;
 

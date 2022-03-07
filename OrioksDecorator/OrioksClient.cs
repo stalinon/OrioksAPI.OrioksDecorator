@@ -18,6 +18,7 @@ namespace OrioksDecorator
 
             instance.News = new NewsCategory(_client);
             instance.Disciplines = new DisciplinesCategory(_client);
+            instance.Teacher = new TeacherCategory(_client);
 
             if (account.Token != null && account.Token != string.Empty)
             {
@@ -74,6 +75,7 @@ namespace OrioksDecorator
         public IDisciplinesCategory Disciplines { get; private set; }
         public IStudentCategory Student { get; private set; }
         public IScheduleCategory Schedule { get; private set; }
+        public ITeacherCategory Teacher { get; private set; }
 
     }
 }

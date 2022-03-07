@@ -1,7 +1,10 @@
 # OrioksDecorator
 Обертка над API orioks.miet.ru + скрапер. Реализация открытых API методов, а также больших за счет парсинга сайта.  
 
-## Пример использования
+Для части работы с Rest API использован пакет [RestSharp](https://restsharp.dev/), 
+для парсинга страниц - [AngleSharp](https://anglesharp.github.io/).
+
+## Пример использования библиотеки
 
 ```c#
 using OrioksDecorator;

@@ -1,6 +1,7 @@
 ﻿using AngleSharp.Html.Parser;
 using OrioksDecorator.Categories.Interfaces;
 using OrioksDecorator.Models.Teacher;
+using OrioksDecorator.Utility;
 
 namespace OrioksDecorator.Categories.Impl
 {
@@ -15,7 +16,7 @@ namespace OrioksDecorator.Categories.Impl
 
         public async Task<Teacher> GetTeachersInfo(string name)
         {
-            var baseUrl = LinkDict.Values[name.First().ToString().ToUpper()];
+            var baseUrl = Dict.Links[name.First().ToString().ToUpper()];
             var response = await _client.GetAsync(baseUrl);
 
             var html = await response.Content.ReadAsStringAsync();

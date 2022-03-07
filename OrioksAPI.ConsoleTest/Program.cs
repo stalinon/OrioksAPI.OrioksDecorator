@@ -1,4 +1,5 @@
 ﻿using OrioksDecorator;
+using System.Text.RegularExpressions;
 
 var account = new OrioksAccount
 {
@@ -8,6 +9,8 @@ var account = new OrioksAccount
 };
 
 var client = await OrioksClient.Instance(account);
+
+
 
 //await Resourses.GetResourseFromFirstOfCurrDisciplinesAsync(client);
 //await News.NewsAsync(client);

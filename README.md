@@ -18,7 +18,7 @@ var account = new OrioksAccount
 
 var client = new OrioksClient(account);
 
-var studentInfo = await client.Student.GetStudentInfo();
+var studentInfo = await OrioksClient.Instance(account);
 
 var fullName = studentInfo.FullName; // ФИО
 

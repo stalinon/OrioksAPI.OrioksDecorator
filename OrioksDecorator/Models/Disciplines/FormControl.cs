@@ -2,7 +2,7 @@
 
 namespace OrioksDecorator.Models.Disciplines
 {
-    public class FormControl
+    public sealed class FormControl
     {
         [JsonProperty("id")]
         public int Id { get; set; }

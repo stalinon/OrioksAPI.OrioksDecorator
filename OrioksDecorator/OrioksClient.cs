@@ -6,11 +6,19 @@ using System.Net;
 
 namespace OrioksDecorator
 {
-    public class OrioksClient
+    /// <summary>
+    ///     Корневой класс библиотеки,
+    ///     реализующий категории работы
+    ///     с системой
+    /// </summary>
+    public sealed class OrioksClient
     {
         private static HttpClient _client;
         private static RestClient _clientRest;
 
+        /// <summary>
+        ///     Создание объекта <see cref="OrioksClient"/>
+        /// </summary>
         public static async Task<OrioksClient> Instance(OrioksAccount account)
         {
             var instance = new OrioksClient(account);
@@ -39,6 +47,7 @@ namespace OrioksDecorator
             return instance;
         }
 
+        /// <inheritdoc cref="OrioksClient"/>
         private OrioksClient(OrioksAccount account)
         {
             var cookies = new CookieContainer();
@@ -48,6 +57,9 @@ namespace OrioksDecorator
             _client = new HttpClient(handler);
         }
 
+        /// <summary>
+        ///     Авторизация
+        /// </summary>
         private async Task Auth(OrioksAccount account)
         {
             var url = "https://orioks.miet.ru/user/login";
@@ -72,11 +84,22 @@ namespace OrioksDecorator
             await _client.PostAsync(url, content);
         }
 
+        /// <inheritdoc cref="INewsCategory"/>
         public INewsCategory News { get; private set; }
+
+        /// <inheritdoc cref="IDisciplinesCategory"/>
         public IDisciplinesCategory Disciplines { get; private set; }
+
+        /// <inheritdoc cref="IStudentCategory"/>
         public IStudentCategory Student { get; private set; }
+
+        /// <inheritdoc cref="IScheduleCategory"/>
         public IScheduleCategory Schedule { get; private set; }
+
+        /// <inheritdoc cref="ITeacherCategory"/>
         public ITeacherCategory Teacher { get; private set; }
+
+        /// <inheritdoc cref="IScheduleNoAPICategory"/>
         public IScheduleNoAPICategory ScheduleNoApi { get; set; }
 
     }

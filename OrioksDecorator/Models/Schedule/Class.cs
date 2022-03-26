@@ -2,7 +2,7 @@
 
 namespace OrioksDecorator.Models.Schedule
 {
-    public class Class
+    public sealed class Class
     {
         [JsonProperty("1")]
         public IEnumerable<string> First { get; set; }

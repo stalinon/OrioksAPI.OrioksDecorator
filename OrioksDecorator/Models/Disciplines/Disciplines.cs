@@ -2,8 +2,12 @@
 
 namespace OrioksDecorator.Models.Disciplines
 {
-    public class Disciplines
+    /// <summary>
+    ///     Список дисциплин
+    /// </summary>
+    public sealed class Disciplines
     {
+        /// <inheritdoc cref="Disciplines"/>
         [JsonProperty("dises")]
         public IEnumerable<Discipline> Items { get; set; }
     }

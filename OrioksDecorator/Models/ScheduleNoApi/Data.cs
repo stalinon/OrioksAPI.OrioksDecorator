@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace OrioksDecorator.Models.ScheduleNoApi
 {
-	public class Data
+	public sealed class Data
 	{
 		[JsonProperty("Day")]
 		public int Day { get; set; }

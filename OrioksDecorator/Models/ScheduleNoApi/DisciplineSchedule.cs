@@ -2,7 +2,10 @@
 
 namespace OrioksDecorator.Models.ScheduleNoApi
 {
-    public class DisciplineSchedule
+    /// <summary>
+    ///     Расписание
+    /// </summary>
+    public sealed class DisciplineSchedule
     {
         [JsonProperty("Times")]
         public IEnumerable<Times> Times { get; set; }

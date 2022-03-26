@@ -4,15 +4,18 @@ using OrioksDecorator.Models.ScheduleNoApi;
 
 namespace OrioksDecorator.Categories.Impl
 {
-    public class ScheduleNoAPICategory : IScheduleNoAPICategory
+    /// <inheritdoc cref="IScheduleNoAPICategory"/>
+    public sealed class ScheduleNoAPICategory : IScheduleNoAPICategory
     {
         private HttpClient _client;
 
+        /// <inheritdoc cref="IScheduleNoAPICategory"/>
         public ScheduleNoAPICategory(HttpClient client)
         {
             _client = client;
         }
 
+        /// <inheritdoc />
         public async Task<DisciplineSchedule> GetDisciplineScheduleItemsAsync(string groupKey)
         {
             var baseUrl = $"https://miet.ru/schedule/data";

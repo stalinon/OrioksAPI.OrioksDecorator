@@ -2,7 +2,10 @@
 
 namespace OrioksDecorator.Models.Schedule
 {
-    public class ScheduleItem
+    /// <summary>
+    ///     Элемент расписания
+    /// </summary>
+    public sealed class ScheduleItem
     {
         [JsonProperty("name")]
         public string Name { get; set; }

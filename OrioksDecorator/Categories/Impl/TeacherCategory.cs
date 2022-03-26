@@ -5,15 +5,18 @@ using OrioksDecorator.Utility;
 
 namespace OrioksDecorator.Categories.Impl
 {
-    public class TeacherCategory : ITeacherCategory
+    /// <inheritdoc cref="ITeacherCategory"/>
+    public sealed class TeacherCategory : ITeacherCategory
     {
         private HttpClient _client;
 
+        /// <inheritdoc cref="ITeacherCategory"/>
         public TeacherCategory(HttpClient client)
         {
             _client = client;
         }
 
+        /// <inheritdoc/>
         public async Task<Teacher> GetTeachersInfo(string name)
         {
             var baseUrl = Dict.Links[name.First().ToString().ToUpper()];

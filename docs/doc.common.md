@@ -121,6 +121,7 @@ User-Agent: <app>/<app-version> <os>[ <os-version>]
 ```
 
 `<encoded_auth>`
+
 Разделённые двоеточием `логин:пароль`, закодированные в Base64.
 
 `<app>`

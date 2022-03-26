@@ -2,7 +2,7 @@
 
 namespace OrioksDecorator.Models.Schedule
 {
-    public class Group
+    public sealed class Group
     {
         [JsonProperty("id")]
 

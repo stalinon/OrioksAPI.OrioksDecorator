@@ -2,7 +2,7 @@
 
 namespace OrioksDecorator.Models.Student
 {
-    public class AcademicDebts
+    public sealed class AcademicDebts
     {
         [JsonProperty("consultation_schedule")]
         public string ConsultationSchedule { get; set; }

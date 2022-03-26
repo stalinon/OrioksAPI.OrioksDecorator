@@ -6,15 +6,18 @@ using RestSharp;
 
 namespace OrioksDecorator.Categories.Impl
 {
-    public class StudentCategory : IStudentCategory
+    /// <inheritdoc cref="IStudentCategory"/>
+    public sealed class StudentCategory : IStudentCategory
     {
         private readonly RestClient _client;
 
+        /// <inheritdoc cref="IStudentCategory"/>
         public StudentCategory(RestClient client)
         {
             _client = client;
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<AcademicDebts>> GetAcademicDebts()
         {
             var request = new RestRequest
@@ -28,6 +31,7 @@ namespace OrioksDecorator.Categories.Impl
             return JsonConvert.DeserializeObject<IEnumerable<AcademicDebts>>(response.Content);
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<Discipline>> GetDisciplines()
         {
             var request = new RestRequest
@@ -41,6 +45,7 @@ namespace OrioksDecorator.Categories.Impl
             return JsonConvert.DeserializeObject<IEnumerable<Discipline>>(response.Content);
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<Event>> GetEventsByDisciplineId(int disciplineId)
         {
             var request = new RestRequest
@@ -54,6 +59,7 @@ namespace OrioksDecorator.Categories.Impl
             return JsonConvert.DeserializeObject<IEnumerable<Event>>(response.Content);
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<Resit>> GetResitsByDebtId(int debtId)
         {
             var request = new RestRequest
@@ -67,6 +73,7 @@ namespace OrioksDecorator.Categories.Impl
             return JsonConvert.DeserializeObject<IEnumerable<Resit>>(response.Content);
         }
 
+        /// <inheritdoc />
         public async Task<Student> GetStudentInfo()
         {
             var request = new RestRequest

@@ -2,7 +2,7 @@
 
 namespace OrioksDecorator.Models.Student
 {
-    public class Resit
+    public sealed class Resit
     {
         [JsonProperty("classroom")]
         public string Classroom { get; set; }

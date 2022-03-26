@@ -2,7 +2,7 @@
 
 namespace OrioksDecorator.Models.Disciplines
 {
-    public class Science
+    public sealed class Science
     {
         [JsonProperty("id")]
         public int Id { get; set; }

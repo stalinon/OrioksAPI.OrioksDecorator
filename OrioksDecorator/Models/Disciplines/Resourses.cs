@@ -1,6 +1,6 @@
 ﻿namespace OrioksDecorator.Models.Disciplines
 {
-    public class Resourses
+    public sealed class Resourses
     {
         public int DisId { get; set; }
         public int SciId { get; set; }

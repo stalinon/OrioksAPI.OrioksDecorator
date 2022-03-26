@@ -5,16 +5,19 @@ using RestSharp;
 
 namespace OrioksDecorator.Categories.Impl
 {
-    public class ScheduleCategory : IScheduleCategory
+    /// <inheritdoc cref="IScheduleCategory"/>
+    public sealed class ScheduleCategory : IScheduleCategory
     {
 
         private readonly RestClient _client;
 
+        /// <inheritdoc cref="IScheduleCategory"/>
         public ScheduleCategory(RestClient client)
         {
             _client = client;
         }
 
+        /// <inheritdoc />
         public async Task<int> GetCurrentWeekAsync()
         {
             var schedule = await GetShedule();
@@ -28,6 +31,7 @@ namespace OrioksDecorator.Categories.Impl
             return 0;
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<Group>> GetGroupsAsync()
         {
             var request = new RestRequest
@@ -41,6 +45,7 @@ namespace OrioksDecorator.Categories.Impl
             return JsonConvert.DeserializeObject<IEnumerable<Group>>(response.Content);
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<ScheduleItem>> GetScheduleByGroupIdAsync(int groupId)
         {
             var request = new RestRequest
@@ -54,6 +59,7 @@ namespace OrioksDecorator.Categories.Impl
             return JsonConvert.DeserializeObject<IEnumerable<ScheduleItem>>(response.Content);
         }
 
+        /// <inheritdoc />
         public async Task<Class> GetTimetableAsync()
         {
             var request = new RestRequest
@@ -67,6 +73,7 @@ namespace OrioksDecorator.Categories.Impl
             return JsonConvert.DeserializeObject<Class>(response.Content);
         }
 
+        /// <inheritdoc />
         public async Task<int> GetWeekTypeAsync()
         {
             var schedule = await GetShedule();

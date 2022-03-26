@@ -4,15 +4,18 @@ using OrioksDecorator.Models.News;
 
 namespace OrioksDecorator.Categories.Impl
 {
-    public class NewsCategory : INewsCategory
+    /// <inheritdoc cref="INewsCategory"/>
+    public sealed class NewsCategory : INewsCategory
     {
         private HttpClient _client;
 
+        /// <inheritdoc cref="INewsCategory"/>
         public NewsCategory(HttpClient client)
         {
             _client = client;
         }
 
+        /// <inheritdoc />
         public async Task<IEnumerable<NewsItem>> GetNews(bool getDescriptions)
         {
             var baseUrl = "https://orioks.miet.ru/";
@@ -54,6 +57,7 @@ namespace OrioksDecorator.Categories.Impl
             return list;
         }
 
+        /// <inheritdoc />
         public async Task<NewsItem> GetNewsItemsDesc(NewsItem item)
         {
             var parser = new HtmlParser();

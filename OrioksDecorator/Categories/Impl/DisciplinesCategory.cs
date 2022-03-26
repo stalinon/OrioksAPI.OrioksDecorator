@@ -7,15 +7,18 @@ using OrioksDecorator.Models.Disciplines;
 
 namespace OrioksDecorator.Categories.Impl
 {
-    public class DisciplinesCategory : IDisciplinesCategory
+    /// <inheritdoc cref="IDisciplinesCategory"/>
+    public sealed class DisciplinesCategory : IDisciplinesCategory
     {
         private HttpClient _client;
 
+        /// <inheritdoc cref="IDisciplinesCategory"/>
         public DisciplinesCategory(HttpClient client)
         {
             _client = client;
         }
 
+        /// <inheritdoc />
         public async Task<Disciplines> GetCurrentDisciplineInfos()
         {
             var baseUrl = "https://orioks.miet.ru/";
@@ -33,6 +36,7 @@ namespace OrioksDecorator.Categories.Impl
             return discipline;
         }
 
+        /// <inheritdoc />
         public async Task<Disciplines> GetDisciplineInfoById(int semesterId, int studentId)
         {
             var baseUrl = "https://orioks.miet.ru/";
@@ -50,6 +54,7 @@ namespace OrioksDecorator.Categories.Impl
             return discipline;
         }
 
+        /// <inheritdoc />
         public async Task<Resourses> GetResoursesByDiscipline(Discipline discipline)
         {
             var disId = discipline.Id;

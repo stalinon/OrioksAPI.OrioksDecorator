@@ -2,7 +2,7 @@
 
 namespace OrioksDecorator.Models.Disciplines
 {
-    public class Lectern
+    public sealed class Lectern
     {
         [JsonProperty("id")]
         public int Id { get; set; }

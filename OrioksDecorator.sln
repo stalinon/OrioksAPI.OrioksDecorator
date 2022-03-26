@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrioksDecorator", "OrioksDecorator\OrioksDecorator.csproj", "{892F9E6C-A456-4832-8773-9D10A12BA9B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrioksDecorator", "OrioksDecorator\OrioksDecorator.csproj", "{892F9E6C-A456-4832-8773-9D10A12BA9B2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrioksAPI.ConsoleTest", "OrioksAPI.ConsoleTest\OrioksAPI.ConsoleTest.csproj", "{75C19B07-BAAF-4C1B-BEE3-EAFC1BF1944C}"
 EndProject

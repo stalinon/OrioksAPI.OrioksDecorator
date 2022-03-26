@@ -2,7 +2,7 @@
 
 namespace OrioksDecorator.Models.Disciplines
 {
-    public class Grade
+    public sealed class Grade
     {
         [JsonProperty("o")]
         public string O { get; set; }

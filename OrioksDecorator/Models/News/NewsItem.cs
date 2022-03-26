@@ -1,6 +1,9 @@
 ﻿namespace OrioksDecorator.Models.News
 {
-    public class NewsItem
+    /// <summary>
+    ///     Новость
+    /// </summary>
+    public sealed class NewsItem
     {
         public int Id { get; set; }
         public string Title { get; set; }

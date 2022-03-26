@@ -1,6 +1,9 @@
 ﻿namespace OrioksDecorator.Models.Teacher
 {
-    public class Teacher
+    /// <summary>
+    ///     Информация о преподавателе
+    /// </summary>
+    public sealed class Teacher
     {
         public string Name { get; set; }
         public string Degree { get; set; }

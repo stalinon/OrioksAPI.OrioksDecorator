@@ -1,5 +1,6 @@
 ﻿using OrioksDecorator.Categories.Impl;
 using OrioksDecorator.Categories.Interfaces;
+using OrioksDecorator.Utility;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Net;
@@ -16,6 +17,9 @@ namespace OrioksDecorator
         private static HttpClient _client;
         private static RestClient _clientRest;
 
+        private static bool _isAuthorized = true;
+        private static bool _hasToken;
+
         /// <summary>
         ///     Создание объекта <see cref="OrioksClient"/>
         /// </summary>
@@ -31,7 +35,7 @@ namespace OrioksDecorator
 
             if (account.Token != null && account.Token != string.Empty)
             {
-
+                _hasToken = true;
                 _clientRest = new RestClient("https://orioks.miet.ru/")
                 {
                     Authenticator = new JwtAuthenticator(account.Token),
@@ -68,7 +72,7 @@ namespace OrioksDecorator
 
             var html = await response.Content.ReadAsStringAsync();
 
-            var input = html.Split('\n').Where(x => x.Contains("input")).FirstOrDefault();
+            var input = html.Split('\n').Where(x => x.Contains("input")).FirstOrDefault()!;
 
             var _csrf = input.Split('"')[5];
 
@@ -81,26 +85,52 @@ namespace OrioksDecorator
                 {"_csrf", _csrf}, {"LoginForm[login]", login}, {"LoginForm[password]", password}
             });
 
-            await _client.PostAsync(url, content);
+            response = await _client.PostAsync(url, content);
+
+            if ((await response.Content.ReadAsStringAsync()).Contains("<div class=\"alert alert-danger\">"))
+            {
+                _isAuthorized = false;
+            }
         }
 
+        private INewsCategory? _news;
+        private IDisciplinesCategory? _disciplines;
+        private IStudentCategory? _student;
+        private IScheduleCategory? _schedule;
+
         /// <inheritdoc cref="INewsCategory"/>
-        public INewsCategory News { get; private set; }
+        public INewsCategory? News
+        {
+            get => _isAuthorized ? _news : throw new AuthException("Not authorized"); 
+            private set => _news = value;
+        }
 
         /// <inheritdoc cref="IDisciplinesCategory"/>
-        public IDisciplinesCategory Disciplines { get; private set; }
+        public IDisciplinesCategory? Disciplines
+        {
+            get => _isAuthorized ? _disciplines : throw new AuthException("Not authorized");
+            private set => _disciplines = value;
+        }
 
         /// <inheritdoc cref="IStudentCategory"/>
-        public IStudentCategory Student { get; private set; }
+        public IStudentCategory? Student
+        {
+            get => _hasToken ? _student : throw new AuthException("Got no auth token");
+            private set => _student = value;
+        }
 
         /// <inheritdoc cref="IScheduleCategory"/>
-        public IScheduleCategory Schedule { get; private set; }
+        public IScheduleCategory? Schedule
+        {
+            get => _hasToken ? _schedule : throw new AuthException("Got no auth token");
+            private set => _schedule = value;
+        }
 
         /// <inheritdoc cref="ITeacherCategory"/>
-        public ITeacherCategory Teacher { get; private set; }
+        public ITeacherCategory Teacher { get; private set; } = default!;
 
         /// <inheritdoc cref="IScheduleNoAPICategory"/>
-        public IScheduleNoAPICategory ScheduleNoApi { get; set; }
+        public IScheduleNoAPICategory ScheduleNoApi { get; set; } = default!;
 
     }
 }

@@ -5,6 +5,23 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrioksDecorator", "src\OrioksDecorator\OrioksDecorator.csproj", "{7A259D32-C41E-41E8-AAB4-E3F0EC89F08D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4226F243-CA73-447C-85C7-2C7A5A3B1F2B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{8F027AEB-FA2C-43D6-A796-77C109AE5CA4}"
+	ProjectSection(SolutionItems) = preProject
+		docs\doc.common.md = docs\doc.common.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DA829EF9-F0E5-43CD-B826-2AFD6D26FB8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3D34960A-1C31-4D7B-A3D1-B0487497B1E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +35,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7A259D32-C41E-41E8-AAB4-E3F0EC89F08D} = {3D34960A-1C31-4D7B-A3D1-B0487497B1E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D64A751-B15A-4F67-96C0-2BB0B41B08C3}

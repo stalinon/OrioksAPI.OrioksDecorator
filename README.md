@@ -3,7 +3,7 @@
 
 [`Краткая документация`](docs/doc.common.md)
 
-![example workflow](https://github.com/stalinon/OrioksAPI.OrioksDecorator/actions/workflows/dotnet.yml/badge.svg)
+![example workflow](https://github.com/stalinon/OrioksAPI.OrioksDecorator/actions/workflows/.NET/badge.svg)
 
 Для части работы с Rest API использован пакет [RestSharp](https://restsharp.dev/), 
 для парсинга страниц - [AngleSharp](https://anglesharp.github.io/).

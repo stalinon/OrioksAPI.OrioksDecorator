@@ -15,7 +15,14 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
-
+      
+      - name: Generate build number
+        uses: einaregilsson/build-number@v2 
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}        
+      - name: Print new build number
+        run: echo "Build number is $BUILD_NUMBER"
+      
       # Publish
       - name: Publish on version change
         id: publish_nuget
@@ -34,7 +41,7 @@ jobs:
           VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
           
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
-          VERSION_STATIC: 1.0.0
+          VERSION_STATIC: ${{BUILD_NUMBER}}
 
           # Flag to toggle git tagging, enabled by default
           TAG_COMMIT: true

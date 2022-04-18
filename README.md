@@ -5,6 +5,8 @@
 
 ![workflow](https://github.com/stalinon/OrioksAPI.OrioksDecorator/workflows/.NET/badge.svg)
 
+`На данный момент проект можно считать завершенным. По мере необходимости будут вноситься некоторые изменения, но, вообще говоря, на этом мои полномочия все.`
+
 Для части работы с Rest API использован пакет [RestSharp](https://restsharp.dev/), 
 для парсинга страниц - [AngleSharp](https://anglesharp.github.io/).
 

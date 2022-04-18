@@ -3,7 +3,7 @@
 
 [`Краткая документация`](docs/doc.common.md)
 
-![workflow](https://github.com/stalinon/OrioksAPI.OrioksDecorator/workflows/.NET/badge.svg)
+![workflow](https://github.com/stalinon/OrioksAPI.OrioksDecorator/workflows/.NET/badge.svg) ![Nuget](https://img.shields.io/nuget/v/OrioksAPI.OrioksDecorator)
 
 `На данный момент проект можно считать завершенным. По мере необходимости будут вноситься некоторые изменения, но, вообще говоря, на этом мои полномочия все.`
 

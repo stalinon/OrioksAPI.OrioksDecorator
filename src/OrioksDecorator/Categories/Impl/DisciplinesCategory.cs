@@ -8,7 +8,7 @@ using OrioksDecorator.Models.Disciplines;
 namespace OrioksDecorator.Categories.Impl
 {
     /// <inheritdoc cref="IDisciplinesCategory"/>
-    public sealed class DisciplinesCategory : IDisciplinesCategory
+    internal sealed class DisciplinesCategory : IDisciplinesCategory
     {
         private HttpClient _client;
 
@@ -33,7 +33,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var discipline = JsonConvert.DeserializeObject<Disciplines>(discJson);
 
-            return discipline;
+            return discipline!;
         }
 
         /// <inheritdoc />
@@ -51,7 +51,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var discipline = JsonConvert.DeserializeObject<Disciplines>(discJson);
 
-            return discipline;
+            return discipline!;
         }
 
         /// <inheritdoc />
@@ -74,7 +74,7 @@ namespace OrioksDecorator.Categories.Impl
             var result = new Resourses
             {
                 DisId = disId,
-                SciId = (int)sciId,
+                SciId = (int)sciId!,
                 DisName = discipline.Name
             };
 
@@ -82,8 +82,8 @@ namespace OrioksDecorator.Categories.Impl
 
             foreach (var group in groups)
             {
-                var name = group.QuerySelector("div.list-group-item").TextContent;
-                var resourses = group.QuerySelector(".panel-collapse").ChildNodes.Where(x => (x is IHtmlDivElement));
+                var name = group.QuerySelector("div.list-group-item")!.TextContent;
+                var resourses = group.QuerySelector(".panel-collapse")!.ChildNodes.Where(x => (x is IHtmlDivElement));
 
                 var res = new Resourse
                 {
@@ -96,15 +96,15 @@ namespace OrioksDecorator.Categories.Impl
 
                 foreach (var resourse in resourses)
                 {
-                    var link = (resourse as IElement).QuerySelector("a");
-                    var resourseName = link.TextContent;
+                    var link = (resourse as IElement)!.QuerySelector("a");
+                    var resourseName = link!.TextContent;
                     var resourseLink = link.GetAttribute("href");
-                    var resourseType = (resourse as IElement).QuerySelector("span.label").TextContent;
+                    var resourseType = (resourse as IElement)!.QuerySelector("span.label")!.TextContent;
 
                     var resourseItem = new ResourseItem
                     {
                         Name = resourseName,
-                        Link = resourseLink,
+                        Link = resourseLink!,
                         Type = resourseType
                     };
 

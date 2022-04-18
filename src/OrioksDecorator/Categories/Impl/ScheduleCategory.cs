@@ -6,7 +6,7 @@ using RestSharp;
 namespace OrioksDecorator.Categories.Impl
 {
     /// <inheritdoc cref="IScheduleCategory"/>
-    public sealed class ScheduleCategory : IScheduleCategory
+    internal sealed class ScheduleCategory : IScheduleCategory
     {
 
         private readonly RestClient _client;
@@ -42,7 +42,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<IEnumerable<Group>>(response.Content);
+            return JsonConvert.DeserializeObject<IEnumerable<Group>>(response.Content!)!;
         }
 
         /// <inheritdoc />
@@ -56,7 +56,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<IEnumerable<ScheduleItem>>(response.Content);
+            return JsonConvert.DeserializeObject<IEnumerable<ScheduleItem>>(response.Content!)!;
         }
 
         /// <inheritdoc />
@@ -70,7 +70,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<Class>(response.Content);
+            return JsonConvert.DeserializeObject<Class>(response.Content!)!;
         }
 
         /// <inheritdoc />
@@ -97,7 +97,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<Schedule>(response.Content);
+            return JsonConvert.DeserializeObject<Schedule>(response.Content!)!;
         }
     }
 }

@@ -5,7 +5,7 @@ using OrioksDecorator.Models.News;
 namespace OrioksDecorator.Categories.Impl
 {
     /// <inheritdoc cref="INewsCategory"/>
-    public sealed class NewsCategory : INewsCategory
+    internal sealed class NewsCategory : INewsCategory
     {
         private HttpClient _client;
 
@@ -36,7 +36,7 @@ namespace OrioksDecorator.Categories.Impl
                 if (strings.Count() != 3)
                     break;
 
-                var url = baseUrl + strings[2].FirstElementChild.GetAttribute("href");
+                var url = baseUrl + strings[2].FirstElementChild!.GetAttribute("href");
 
                 var news = new NewsItem
                 {
@@ -74,7 +74,7 @@ namespace OrioksDecorator.Categories.Impl
             var desc = string.Join('\n', body);
 
             item.Description = desc;
-            item.FileLink = link;
+            item.FileLink = link!;
 
             return item;
         }

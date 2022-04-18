@@ -11,5 +11,10 @@ namespace OrioksDecorator.Categories.Interfaces
         ///     Получить расписание группы по ключу, <code>Пример ключа: БТС-11</code>
         /// </summary>
         Task<DisciplineSchedule> GetDisciplineScheduleItemsAsync(string groupKey);
+
+        /// <summary>
+        ///     Получить ключи групп, <code>Пример ключа: БТС-11</code>
+        /// </summary>
+        Task<IEnumerable<string>> GetGroupKeys();
     }
 }

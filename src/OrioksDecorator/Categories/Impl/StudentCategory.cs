@@ -7,7 +7,7 @@ using RestSharp;
 namespace OrioksDecorator.Categories.Impl
 {
     /// <inheritdoc cref="IStudentCategory"/>
-    public sealed class StudentCategory : IStudentCategory
+    internal sealed class StudentCategory : IStudentCategory
     {
         private readonly RestClient _client;
 
@@ -28,7 +28,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<IEnumerable<AcademicDebts>>(response.Content);
+            return JsonConvert.DeserializeObject<IEnumerable<AcademicDebts>>(response.Content!)!;
         }
 
         /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<IEnumerable<Discipline>>(response.Content);
+            return JsonConvert.DeserializeObject<IEnumerable<Discipline>>(response.Content!)!;
         }
 
         /// <inheritdoc />
@@ -56,7 +56,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<IEnumerable<Event>>(response.Content);
+            return JsonConvert.DeserializeObject<IEnumerable<Event>>(response.Content!)!;
         }
 
         /// <inheritdoc />
@@ -70,7 +70,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<IEnumerable<Resit>>(response.Content);
+            return JsonConvert.DeserializeObject<IEnumerable<Resit>>(response.Content!)!;
         }
 
         /// <inheritdoc />
@@ -84,7 +84,7 @@ namespace OrioksDecorator.Categories.Impl
 
             var response = await _client.GetAsync(request);
 
-            return JsonConvert.DeserializeObject<Student>(response.Content);
+            return JsonConvert.DeserializeObject<Student>(response.Content!)!;
         }
     }
 }

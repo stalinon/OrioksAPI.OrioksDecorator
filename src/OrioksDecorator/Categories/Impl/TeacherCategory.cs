@@ -6,7 +6,7 @@ using OrioksDecorator.Utility;
 namespace OrioksDecorator.Categories.Impl
 {
     /// <inheritdoc cref="ITeacherCategory"/>
-    public sealed class TeacherCategory : ITeacherCategory
+    internal sealed class TeacherCategory : ITeacherCategory
     {
         private HttpClient _client;
 
@@ -39,16 +39,16 @@ namespace OrioksDecorator.Categories.Impl
             var teacher = new Teacher
             {
                 Name = name,
-                Degree = document.QuerySelector("span.people-content__post").TextContent,
-                Email = document.QuerySelector("a.people-content__info-list__item-email").TextContent,
-                PhoneNumber = document.QuerySelector("span.people-content__info-list__item-phone").TextContent,
-                Auditory = document.QuerySelector("span.people-content__info-list__item-number").TextContent,
+                Degree = document.QuerySelector("span.people-content__post")!.TextContent,
+                Email = document.QuerySelector("a.people-content__info-list__item-email")!.TextContent,
+                PhoneNumber = document.QuerySelector("span.people-content__info-list__item-phone")!.TextContent,
+                Auditory = document.QuerySelector("span.people-content__info-list__item-number")!.TextContent,
                 Position = document.QuerySelectorAll("span.people-content__info-list__item-elem")[1].TextContent,
-                Chapter = document.QuerySelector("a.people-content__info-list__item-link").TextContent,
-                Biography = document.QuerySelector("div.people-content__biography").TextContent,
-                Courses = document.QuerySelector("div.people-content__courses").TextContent,
-                Science = document.QuerySelector("div.people-content__science").TextContent,
-                ImageUrl = "https://miet.ru"+document.QuerySelector("div.people-content__image").GetAttribute("style").Split(new[] { '(', ')' })[1]
+                Chapter = document.QuerySelector("a.people-content__info-list__item-link")!.TextContent,
+                Biography = document.QuerySelector("div.people-content__biography")!.TextContent,
+                Courses = document.QuerySelector("div.people-content__courses")!.TextContent,
+                Science = document.QuerySelector("div.people-content__science")!.TextContent,
+                ImageUrl = "https://miet.ru"+document.QuerySelector("div.people-content__image")!.GetAttribute("style")!.Split(new[] { '(', ')' })[1]
             };
 
             return teacher;

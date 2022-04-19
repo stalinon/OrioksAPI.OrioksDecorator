@@ -12,5 +12,11 @@ namespace OrioksDecorator.Categories.Interfaces
         ///     по полному имени
         /// </summary>
         Task<Teacher> GetTeachersInfo(string name);
+
+        /// <summary>
+        ///     Получить информацию о всех
+        ///     преподавателях
+        /// </summary>
+        Task<IEnumerable<Teacher>> GetAllTeacherInfos();
     }
 }

@@ -23,36 +23,40 @@ namespace OrioksDecorator
         /// <summary>
         ///     Создание объекта <see cref="OrioksClient"/>
         /// </summary>
-        public static async Task<OrioksClient> Instance(OrioksAccount account)
+        public static async Task<OrioksClient> Instance(OrioksAccount? account = null)
         {
-            var instance = new OrioksClient(account);
-            await instance.Auth(account);
+            var instance = new OrioksClient();
 
-            instance.News = new NewsCategory(_client);
-            instance.Disciplines = new DisciplinesCategory(_client);
             instance.Teacher = new TeacherCategory(_client);
             instance.ScheduleNoApi = new ScheduleNoAPICategory(_client);
 
-            if (account.Token != null && account.Token != string.Empty)
+            if (account != null)
             {
-                _hasToken = true;
-                _clientRest = new RestClient("https://orioks.miet.ru/")
+                await instance.Auth(account);
+                instance.News = new NewsCategory(_client);
+                instance.Disciplines = new DisciplinesCategory(_client);
+
+                if (account.Token != null && account.Token != string.Empty)
                 {
-                    Authenticator = new JwtAuthenticator(account.Token),
-                };
+                    _hasToken = true;
+                    _clientRest = new RestClient("https://orioks.miet.ru/")
+                    {
+                        Authenticator = new JwtAuthenticator(account.Token),
+                    };
 
-                _clientRest.AddDefaultHeader("Accept", "application/json");
-                _clientRest.AddDefaultHeader("User-Agent", "PostmanRuntime/7.28.4 Windows 10");
+                    _clientRest.AddDefaultHeader("Accept", "application/json");
+                    _clientRest.AddDefaultHeader("User-Agent", "PostmanRuntime/7.28.4 Windows 10");
 
-                instance.Schedule = new ScheduleCategory(_clientRest);
-                instance.Student = new StudentCategory(_clientRest);
+                    instance.Schedule = new ScheduleCategory(_clientRest);
+                    instance.Student = new StudentCategory(_clientRest);
+                }
             }
 
             return instance;
         }
 
         /// <inheritdoc cref="OrioksClient"/>
-        private OrioksClient(OrioksAccount account)
+        private OrioksClient()
         {
             var cookies = new CookieContainer();
             var handler = new HttpClientHandler();

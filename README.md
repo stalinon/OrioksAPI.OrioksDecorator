@@ -22,13 +22,12 @@ var account = new OrioksAccount
     Token = "+++++"
 };
 
-var client = new OrioksClient(account);
+var client = await OrioksClient.Instance(account);
 
-var studentInfo = await OrioksClient.Instance(account);
+var teacherInfo = client.Teacher.GetTeachersInfo("Пупкин Василий Петрович");
 
-var fullName = studentInfo.FullName; // ФИО
+Console.WriteLine(teacherInfo.Biography);
 
-var course = studentInfo.Course; // Курс
 ```
 
 ## Планы, обновления
